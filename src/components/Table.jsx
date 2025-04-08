@@ -1,7 +1,6 @@
-import { Component } from 'react'
 import { ListGroup } from 'react-bootstrap'
 
-class Table extends Component {
+const Table = function (props) {
   // state = {
   //   selected: undefined, // 'Uno', 'Due' o 'Tre'
   // }
@@ -11,44 +10,36 @@ class Table extends Component {
   // per farlo, App ha predisposto un metodo che si chiama changeAppState
   // e lo sta passando come prop a Table
 
-  checkSelected = (value) =>
-    value === this.props.valoreDiSelected ? 'selected' : ''
+  const checkSelected = (value) =>
+    value === props.valoreDiSelected ? 'selected' : ''
 
-  render() {
-    return (
-      <>
-        <ListGroup className="text-dark">
-          <ListGroup.Item
-            onClick={() =>
-              this.props.metodoPerCambiareAppState({ selected: 'Uno' })
-            }
-            className={this.checkSelected('Uno')}
-          >
-            Uno
-          </ListGroup.Item>
-          <ListGroup.Item
-            onClick={() =>
-              this.props.metodoPerCambiareAppState({ selected: 'Due' })
-            }
-            className={this.checkSelected('Due')}
-          >
-            Due
-          </ListGroup.Item>
-          <ListGroup.Item
-            onClick={() =>
-              this.props.metodoPerCambiareAppState({ selected: 'Tre' })
-            }
-            className={this.checkSelected('Tre')}
-          >
-            Tre
-          </ListGroup.Item>
-        </ListGroup>
-        <p className="mt-3">
-          Stato del componente: {this.props.valoreDiSelected || 'undefined'}
-        </p>
-      </>
-    )
-  }
+  return (
+    <>
+      <ListGroup className="text-dark">
+        <ListGroup.Item
+          onClick={() => props.metodoPerCambiareAppState('Uno')}
+          className={checkSelected('Uno')}
+        >
+          Uno
+        </ListGroup.Item>
+        <ListGroup.Item
+          onClick={() => props.metodoPerCambiareAppState('Due')}
+          className={checkSelected('Due')}
+        >
+          Due
+        </ListGroup.Item>
+        <ListGroup.Item
+          onClick={() => props.metodoPerCambiareAppState('Tre')}
+          className={checkSelected('Tre')}
+        >
+          Tre
+        </ListGroup.Item>
+      </ListGroup>
+      <p className="mt-3">
+        Stato del componente: {props.valoreDiSelected || 'undefined'}
+      </p>
+    </>
+  )
 }
 
 export default Table
